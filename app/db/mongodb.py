@@ -10,6 +10,14 @@ class MongoDB:
     async def connect(cls):
         cls.client = AsyncIOMotorClient(settings.MONGODB_URI)
         cls.db = cls.client[settings.MONGODB_NAME]
+        
+        if settings.MONGODB_USERNAME and settings.MONGODB_PASSWORD:
+            cls.db = cls.client.get_database(
+                settings.MONGODB_NAME,
+                username=settings.MONGODB_USERNAME,
+                password=settings.MONGODB_PASSWORD
+            )
+            
         logger.info("Conectado ao MongoDB")
 
     @classmethod

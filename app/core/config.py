@@ -93,6 +93,18 @@ class Settings(BaseSettings):
         description="Chave para utilizar Gemini",
     )
     
+    MONGODB_USERNAME: str = Field(
+        default="",
+        env="MONGODB_USERNAME",
+        description="Usuário para autenticação no MongoDB",
+    )
+    
+    MONGODB_PASSWORD: str = Field(
+        default="",
+        env="MONGODB_PASSWORD",
+        description="Senha para autenticação no MongoDB",
+    )
+    
     class Config:
         case_sensitive = True
         env_file = ".env"
