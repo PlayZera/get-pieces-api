@@ -159,7 +159,7 @@ class MongoDbService:
                 raise HTTPException(detail = f"Não encontrado produtos da página {pagina}",
                                     status_code = 404)
             
-            logger.info(f"Produtos retornado do banco de dados: {produtos}")
+            logger.info(f"Produtos retornados do banco de dados: {produtos}")
 
             produtos = await self.RemoverProdutosVazios(produtos)
 
@@ -172,7 +172,7 @@ class MongoDbService:
         
         produtoContador = 1
 
-        produtosCorretos = []
+        produtosCorretos:list[ProductToShow] = []
 
         logger.debug(f"Quantidade de produtos: {produtos.__len__()}")
 

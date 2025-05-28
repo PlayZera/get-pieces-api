@@ -36,9 +36,10 @@ class ProductListRequest(BaseModel):
     products: List[ProductItemCreate]
 
 class ProductResponse(BaseModel):
-    success: bool
-    data: object
-    message: Optional[str] = None
+    sucesso: bool = False
+    produto: Optional[object] = None
+    produtos: Optional[object] = None
+    mensagem: Optional[str] = None
 
 class ImageRequest(BaseModel):
     code: Optional[str] = Field(None, min_length=0, max_length=100)

@@ -61,11 +61,8 @@ async def get_all_products(
 
         products = await service.get_top_products(page, itensByPage)
 
-        return ProductResponse(
-            success=True,
-            data=products,
-            message=None
-        )
+        return products
+    
     except Exception as e:
         raise HTTPException(
             status_code=500,

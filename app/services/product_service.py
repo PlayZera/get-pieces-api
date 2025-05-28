@@ -62,9 +62,9 @@ class ProductService:
             )
         
         return ProductResponse(
-            success=True,
-            data= product,
-            message=None
+            sucesso=True,
+            produto=product,
+            mensagem=product.nome_produto
         )
     
     async def get_top_products(self, page:int, itensPerPage:int) -> ProductResponse:
@@ -73,15 +73,15 @@ class ProductService:
 
         if not products:
             return ProductResponse(
-                success=False,
-                data=None,
+                sucesso=False,
+                produtos=None,
                 message=f"Produtos da página {page}, não foram carregados"
             )
         
         return ProductResponse(
-            success=True,
-            data= products,
-            message=str(products.__len__())
+            sucesso=True,
+            produtos=products,
+            mensagem=str(products.__len__())
         )
     
 #endregion
