@@ -105,6 +105,12 @@ class Settings(BaseSettings):
         description="Senha para autenticação no MongoDB",
     )
     
+    PRODUCTION: bool = Field(
+        default=False,
+        env="PRODUCTION",
+        description="Produção",
+    )
+    
     class Config:
         case_sensitive = True
         env_file = ".env"

@@ -6,6 +6,7 @@ from app.routers import auth, products, images
 from app.core.config import settings
 from app.core.logger import logger
 import os
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 app = FastAPI(
     title="API de Produtos",
@@ -13,12 +14,13 @@ app = FastAPI(
     version="1.0.0"
 )
 
+if settings.PRODUCTION:
+    logger.warning("Forçando uso de requisições HTTPS")
+    app.add_middleware(HTTPSRedirectMiddleware)
+
 app.add_middleware(
     CORSMiddleware,
-    
-    allow_origins=["http://localhost", 
-                   "https://get-pieces-ai.vercel.app"],
-    
+    allow_origins=["*"], 
     allow_credentials=True,  
     allow_methods=["*"],         
     allow_headers=["*"], 
