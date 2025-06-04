@@ -20,7 +20,7 @@ if settings.PRODUCTION:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=["https://getpiecesaifront-production.up.railway.app/", "http://localhost:3000"], 
     allow_credentials=True,  
     allow_methods=["*"],         
     allow_headers=["*"], 
