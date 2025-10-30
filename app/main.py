@@ -1,6 +1,6 @@
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from app.db.indexes import create_indexes
 from app.db.mongodb import MongoDB
 from app.routers import auth, products, images
@@ -75,9 +75,9 @@ async def startup():
     logger.info("Criando diretórios para imagens de produtos")
     os.makedirs(settings.IMAGES_PATH, exist_ok=True)
     await MongoDB.connect()
+    await create_indexes()
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
     logger.info("Fechando conexões")
     await MongoDB.disconnect()
-    await create_indexes()
